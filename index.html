@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tyler Spence — GTM Engineering Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #18181f;
+    --border: #2a2a35;
+    --accent: #7c5cfc;
+    --accent2: #fc5c7d;
+    --accent3: #5cf8c8;
+    --gold: #fcbc5c;
+    --text: #e8e8f0;
+    --muted: #7070a0;
+    --tag-bg: #1e1e2e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; font-size: 13px; line-height: 1.6; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 54px;
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; background: linear-gradient(135deg, #fff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--accent); color: #fff !important; border-radius: 6px; font-size: 11px !important; font-weight: 500; letter-spacing: 0.04em !important; text-transform: none !important; transition: opacity 0.15s !important; }
+  .nav-cta:hover { opacity: 0.85; text-decoration: none !important; }
+
+  /* HERO */
+  .hero { max-width: 860px; margin: 0 auto; padding: 80px 48px 72px; border-bottom: 1px solid var(--border); }
+  .hero-label { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent3); border: 1px solid rgba(92,248,200,0.25); border-radius: 20px; padding: 4px 12px; margin-bottom: 24px; }
+  .hero-label::before { content: '●'; font-size: 7px; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  h1 { font-family: 'Syne', sans-serif; font-size: 52px; font-weight: 800; letter-spacing: -2px; line-height: 1.05; color: #fff; margin-bottom: 24px; }
+  h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  .hero-body { font-size: 15px; color: var(--muted); line-height: 1.75; max-width: 640px; margin-bottom: 28px; }
+  .hero-body strong { color: var(--text); font-weight: 500; }
+
+  .hero-quote { border-left: 2px solid var(--accent); padding: 10px 16px; margin: 28px 0; font-size: 13px; color: var(--accent3); font-style: italic; line-height: 1.6; background: rgba(92,248,200,0.03); border-radius: 0 6px 6px 0; }
+
+  .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 36px; }
+  .impact-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; position: relative; overflow: hidden; }
+  .impact-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .impact-box:nth-child(1)::before { background: var(--accent3); }
+  .impact-box:nth-child(2)::before { background: var(--accent); }
+  .impact-box:nth-child(3)::before { background: var(--gold); }
+  .impact-box:nth-child(4)::before { background: var(--accent2); }
+  .impact-num { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 5px; }
+  .impact-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; line-height: 1.4; }
+
+  /* SECTIONS */
+  .section { max-width: 860px; margin: 0 auto; padding: 64px 48px; border-bottom: 1px solid var(--border); }
+  .section-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  h2 { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.8px; color: #fff; margin-bottom: 8px; }
+  .section-sub { font-size: 12px; color: var(--muted); margin-bottom: 36px; line-height: 1.6; }
+
+  /* BUILD CARDS */
+  .build { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 24px; overflow: hidden; transition: border-color 0.2s; }
+  .build:hover { border-color: rgba(124,92,252,0.4); }
+
+  .build-header { padding: 22px 24px 16px; }
+  .build-num { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 6px; }
+  .build-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+  .build-desc { font-size: 12px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+
+  .build-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
+  .tag { display: inline-block; background: var(--tag-bg); border: 1px solid var(--border); color: var(--muted); padding: 2px 8px; border-radius: 4px; font-size: 10px; letter-spacing: 0.04em; }
+  .tag.purple { border-color: var(--accent); color: var(--accent); }
+  .tag.green  { border-color: var(--accent3); color: var(--accent3); }
+  .tag.gold   { border-color: var(--gold); color: var(--gold); }
+  .tag.pink   { border-color: var(--accent2); color: var(--accent2); }
+
+  /* MEDIA SPLIT: video left, screenshot right */
+  .build-media {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  .build-video { border-right: 1px solid var(--border); }
+  .build-video-label {
+    padding: 8px 14px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .build-video-label::before { content: '▶'; color: var(--accent3); font-size: 9px; }
+  .loom-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
+  .loom-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+
+  .build-screenshot { overflow: hidden; background: var(--surface2); }
+  .build-screenshot-label {
+    padding: 8px 14px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .build-screenshot-label::before { content: '◻'; color: var(--accent); font-size: 10px; }
+  .screenshot-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: top; display: block; }
+  .screenshot-placeholder {
+    width: 100%; aspect-ratio: 16/9;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+    color: var(--muted); font-size: 11px; text-align: center;
+    padding: 16px;
+  }
+  .screenshot-placeholder span { font-size: 22px; }
+
+  .build-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); border-top: 1px solid var(--border); }
+  .metric { padding: 14px 18px; border-right: 1px solid var(--border); }
+  .metric:last-child { border-right: none; }
+  .metric-val { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 4px; }
+  .metric-val.green { color: var(--accent3); }
+  .metric-val.gold  { color: var(--gold); }
+  .metric-val.pink  { color: var(--accent2); }
+  .metric-val.purple { color: var(--accent); }
+  .metric-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.35; }
+
+  /* WORKSHOP CALLOUT */
+  .workshop-callout {
+    background: linear-gradient(135deg, rgba(124,92,252,0.12) 0%, rgba(92,248,200,0.06) 100%);
+    border: 1px solid rgba(124,92,252,0.4);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .workshop-callout::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+  }
+  .workshop-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .workshop-badge {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent3);
+    background: rgba(92,248,200,0.1);
+    border: 1px solid rgba(92,248,200,0.3);
+    border-radius: 4px;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+  .workshop-scope { display: flex; gap: 6px; flex-wrap: wrap; }
+  .scope-chip {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+  .workshop-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .workshop-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .workshop-desc strong { color: var(--text); font-weight: 500; }
+
+  /* CROSS-FUNCTIONAL INFLUENCE */
+  .influence-grid { display: flex; flex-direction: column; gap: 12px; }
+  .influence-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    transition: border-color 0.2s;
+  }
+  .influence-card:hover { border-color: rgba(124,92,252,0.4); }
+  .influence-card-featured {
+    border-color: rgba(252,188,92,0.3);
+    background: linear-gradient(135deg, #1a1505 0%, var(--surface) 50%);
+  }
+  .influence-card-featured:hover { border-color: rgba(252,188,92,0.6); }
+  .influence-person {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .influence-avatar {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: rgba(124,92,252,0.12);
+    border: 1px solid rgba(124,92,252,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .influence-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .influence-attribution {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .influence-attr-name { font-size: 11px; font-weight: 500; color: var(--text); display: block; margin-bottom: 1px; }
+  .influence-attr-role { font-size: 10px; color: var(--muted); line-height: 1.4; display: block; }
+  .influence-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+  .influence-title { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .influence-items { display: flex; flex-direction: column; gap: 12px; }
+  .influence-item { display: flex; gap: 12px; align-items: flex-start; }
+  .influence-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .influence-impact {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent3);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .influence-bullets {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .influence-bullets li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .influence-bullets li::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .influence-card-featured .influence-bullets li::before { color: var(--gold); }
+
+  /* SYSTEMS THINKING */
+  .sys-list { display: flex; flex-direction: column; gap: 10px; }
+  .sys-item { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; transition: border-color 0.2s; }
+  .sys-item:hover { border-color: rgba(124,92,252,0.4); }
+  .sys-arrow { color: var(--accent); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+  .sys-title { font-weight: 500; color: var(--text); margin-bottom: 3px; font-size: 13px; }
+  .sys-desc { font-size: 11.5px; color: var(--muted); line-height: 1.55; }
+
+  /* RECOGNITION */
+  .rec-grid { display: flex; flex-direction: column; gap: 12px; }
+  .rec-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; border-left: 3px solid var(--accent); transition: border-color 0.2s; }
+  .rec-card:hover { border-color: var(--accent); border-left-color: var(--accent3); }
+  .rec-card.gold-rec { border-left-color: var(--gold); background: linear-gradient(135deg, #1a1505 0%, var(--surface) 60%); }
+  .rec-from { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; }
+  .rec-card.gold-rec .rec-from { color: var(--gold); }
+  .rec-quote { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; color: #fff; line-height: 1.45; margin-bottom: 8px; }
+  .rec-context { font-size: 11.5px; color: var(--muted); line-height: 1.55; }
+  .rec-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* SLACK SCREENSHOT BLOCK */
+  .slack-evidence {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .slack-label {
+    padding: 10px 16px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .slack-label::before { content: '#'; color: var(--accent3); font-weight: 700; font-size: 13px; }
+  .slack-quote-list { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .slack-msg { display: flex; gap: 10px; align-items: flex-start; }
+  .slack-avatar { width: 32px; height: 32px; border-radius: 6px; background: var(--surface2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+  .slack-avatar.tyler { background: rgba(124,92,252,0.15); border-color: var(--accent); }
+  .slack-name { font-size: 11px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .slack-name span { font-size: 10px; color: var(--muted); font-weight: 400; margin-left: 6px; }
+  .slack-text { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .slack-text strong { color: var(--text); font-weight: 400; }
+  .slack-reaction { display: inline-flex; align-items: center; gap: 4px; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; font-size: 11px; margin-top: 5px; color: var(--muted); }
+
+  /* SCREENSHOT PLACEHOLDER for Slack images */
+  .img-placeholder {
+    margin: 0 16px 16px;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    padding: 14px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .img-placeholder code { display: block; margin-top: 4px; font-size: 10px; color: var(--accent); }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .about-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; }
+  .about-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
+  .about-value { font-size: 12.5px; color: var(--text); line-height: 1.65; }
+  .about-value strong { color: var(--accent3); font-weight: 500; }
+  .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .stack-pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; font-size: 11px; color: var(--muted); }
+
+  /* HIGHLIGHTED + ANNOTATION TOOLTIP */
+  .highlighted {
+    position: relative;
+    border-color: var(--accent3) !important;
+    box-shadow: 0 0 0 1px rgba(92,248,200,0.12), 0 4px 24px rgba(92,248,200,0.07);
+  }
+  .highlight-star {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--accent3);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: default;
+  }
+  .highlight-star::before { content: '★'; font-size: 11px; }
+  .annotation {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 10px);
+    width: 280px;
+    background: #0f1f1a;
+    border: 1px solid var(--accent3);
+    border-radius: 8px;
+    padding: 12px 14px;
+    z-index: 50;
+    transition: opacity 0.2s, visibility 0.2s;
+    pointer-events: none;
+    box-shadow: 0 8px 32px rgba(92,248,200,0.1);
+  }
+  .annotation::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    background: #0f1f1a;
+    border-right: 1px solid var(--accent3);
+    border-bottom: 1px solid var(--accent3);
+    transform: rotate(45deg);
+  }
+  .annotation-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent3);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .annotation-text { font-size: 11.5px; color: var(--text); line-height: 1.55; }
+  .highlighted:hover .annotation { visibility: visible; opacity: 1; }
+
+  /* CHANGE AGENT CALLOUT */
+  .change-agent-callout {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: linear-gradient(135deg, rgba(124,92,252,0.08) 0%, rgba(92,248,200,0.06) 100%);
+    border: 1px solid rgba(124,92,252,0.3);
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+  .ca-badge {
+    flex-shrink: 0;
+    background: rgba(124,92,252,0.15);
+    border: 1px solid rgba(124,92,252,0.4);
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+  }
+  .ca-badge-top { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 500; }
+  .ca-badge-main { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; color: #fff; line-height: 1; margin-top: 3px; }
+  .ca-body { flex: 1; min-width: 0; }
+  .ca-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .ca-desc { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+
+  /* CTA */
+  .cta-section { max-width: 860px; margin: 0 auto; padding: 64px 48px; text-align: center; }
+  .cta-section h2 { font-size: 32px; margin-bottom: 12px; letter-spacing: -1px; }
+  .cta-section p { color: var(--muted); font-size: 13px; margin-bottom: 28px; line-height: 1.7; max-width: 540px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--accent); color: #fff; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.04em; transition: opacity 0.15s; }
+  .btn-primary:hover { opacity: 0.85; text-decoration: none; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.04em; transition: border-color 0.15s; }
+  .btn-secondary:hover { border-color: var(--accent); text-decoration: none; }
+
+  footer { text-align: center; padding: 24px 48px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--border); letter-spacing: 0.04em; }
+
+  /* SCROLL OFFSET FOR STICKY NAV */
+  .section, .hero { scroll-margin-top: 62px; }
+
+  /* LIGHTBOX */
+  img { cursor: zoom-in; }
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 6px;
+    object-fit: contain;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+    cursor: default;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+    opacity: 0.6;
+    line-height: 1;
+    font-family: 'DM Mono', monospace;
+  }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* HAMBURGER */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 54px;
+    left: 0; right: 0;
+    background: rgba(10,10,15,0.98);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    z-index: 99;
+    flex-direction: column;
+    padding: 16px 20px;
+    gap: 4px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.04em;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--text); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .hero, .section, .cta-section { padding-left: 20px; padding-right: 20px; }
+    h1 { font-size: 32px; letter-spacing: -1px; }
+    .hero { padding-top: 48px; padding-bottom: 48px; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .build-media { grid-template-columns: 1fr; }
+    .build-video { border-right: none; border-bottom: 1px solid var(--border); }
+    .build-metrics { grid-template-columns: repeat(2, 1fr); }
+    .metric { border-bottom: 1px solid var(--border); }
+    .about-grid { grid-template-columns: 1fr; }
+    .rec-pair { grid-template-columns: 1fr; }
+    .influence-grid { gap: 10px; }
+    .annotation { width: min(280px, 88vw); }
+    .workshop-callout { padding: 16px; }
+    .rec-pair { gap: 10px; }
+    h2 { font-size: 22px; }
+    .section-sub { font-size: 11px; }
+    .cta-section h2 { font-size: 24px; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Tyler Spence</div>
+  <div class="nav-links">
+    <a href="#builds">Builds</a>
+    <a href="#systems">Systems Thinking</a>
+    <a href="#influence">Influence</a>
+    <a href="#recognition">Recognition</a>
+    <a href="#about">Background</a>
+    <a href="https://www.linkedin.com/in/tyler-spence-465a0b122/" target="_blank" class="nav-cta">↗ LinkedIn</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#builds" class="mobile-nav-link">Builds</a>
+  <a href="#systems" class="mobile-nav-link">Systems Thinking</a>
+  <a href="#influence" class="mobile-nav-link">Influence</a>
+  <a href="#recognition" class="mobile-nav-link">Recognition</a>
+  <a href="#about" class="mobile-nav-link">Background</a>
+  <a href="https://www.linkedin.com/in/tyler-spence-465a0b122/" target="_blank">↗ LinkedIn</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">GTM Engineering Portfolio · 2026</div>
+  <h1>I got tired of doing<br>manually what a<br>system could <em>automate.</em></h1>
+  <p class="hero-body">
+    I was handed the <strong>founding AE role for Miro's Digital Natives segment</strong> with no playbook, no SDR, no marketing support, and <strong>73% less inbound than every other segment</strong> at the company. Zero walk-in pipeline. Cold book of business.<br><br>
+    Finding new accounts meant Google Alerts in my inbox and an hour every week manually qualifying in Crunchbase, LinkedIn, and ZoomInfo — often missing signals entirely. QBR prep meant exporting <strong>10+ CSVs from Looker, Salesforce, and Gong</strong>, then context-switching across five tools to piece together a story that should have taken minutes.<br><br>
+    So I built the automation layer myself — signal routing, expansion detection, and AI-powered QBR prep. <strong>I've been doing GTM Engineering work without the title.</strong> This is the portfolio that proves it.
+  </p>
+  <div class="hero-quote highlighted" style="cursor:default;">
+    <div class="annotation" style="left:0; right:auto; width:300px;">
+      <div class="annotation-label">Why this is Tyler</div>
+      <div class="annotation-text">Tyler spent years as a BDR and AE knowing exactly what was broken in the sales process — then built the fix himself. That's the combination this quote is describing: revenue intuition first, systems thinking second. Most engineers can build the tool. Few know which problem is actually worth solving.</div>
+    </div>
+    <span class="highlight-star">Why this matters</span>
+    "The best GTM Engineer isn't a tool sommelier stitching together 14 disparate tools — they're a revenue strategist who deploys elegant strategy at high velocity." <span style="display:block; margin-top:6px; font-size:11px; opacity:0.6;">— Apollo.io, 2026</span>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-box">
+      <div style="font-size:9px; color:var(--accent3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">↑ Builds 01 & 02 — True-Up + Lead Gen</div>
+      <div class="impact-num">$27k</div>
+      <div class="impact-label">Pipeline & closed ARR in first 2 weeks</div>
+    </div>
+    <div class="impact-box">
+      <div style="font-size:9px; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">↑ Build 03 — QBR Builder</div>
+      <div class="impact-num">85%</div>
+      <div class="impact-label">Reduction in QBR prep time</div>
+    </div>
+    <div class="impact-box">
+      <div style="font-size:9px; color:var(--gold); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">↑ Build 01 — True-Up Scanner</div>
+      <div class="impact-num">40 min</div>
+      <div class="impact-label">Saved per rep per week</div>
+    </div>
+  </div>
+</div>
+
+<!-- BUILDS -->
+<div class="section" id="builds">
+  <div class="section-label">What I Built</div>
+  <h2>Three production workflows.</h2>
+  <p class="section-sub">Diagnosed the problem, designed the solution, determined the logic. Each workflow integrates Snowflake, Salesforce, Gong, and Slack — without writing a line of code.</p>
+
+  <!-- BUILD 1: TRUE-UP -->
+  <div class="build">
+    <div class="build-header">
+      <div class="build-num">Build 01</div>
+      <div class="build-title">True-Up Scanner</div>
+      <ul class="influence-bullets" style="margin-bottom:14px;">
+        <li>Surfaces over-allocated accounts and triggers personalized outreach — eliminating manual Salesforce and Looker searching. 100% response rate on all flagged accounts.</li>
+        <li>Uncovered a systemic SFDC blind spot: accounts without auto-created true-up opps were invisible to every rep in the org. Flagged as an ARR risk with a proposed fix.</li>
+      </ul>
+      <div class="build-tags">
+        <span class="tag purple">Expansion Detection</span>
+        <span class="tag green">Automated Outreach</span>
+        <span class="tag gold">Systemic ARR Risk Flagged</span>
+        <div style="flex-basis:100%;height:0"></div>
+        <span class="tag">Snowflake</span>
+        <span class="tag">Salesforce</span>
+        <span class="tag">Slack</span>
+      </div>
+    </div>
+    <div class="build-media">
+      <div class="build-video">
+        <div class="build-video-label">Walkthrough — 3 min</div>
+        <div class="loom-wrap">
+          <iframe src="https://www.loom.com/embed/d971b777e6434a66924c8bb16d49bd0f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="build-screenshot">
+        <div class="build-screenshot-label">Live Dashboard</div>
+        <img src="media/trueup.png" alt="True-Up Contact Approval Dashboard" class="screenshot-img">
+      </div>
+    </div>
+    <div class="build-metrics">
+      <div class="metric"><div class="metric-val green">$11k</div><div class="metric-label">Closed within 1 week</div></div>
+      <div class="metric"><div class="metric-val purple">60%</div><div class="metric-label">Flagged accounts converted to pipeline or closed</div></div>
+      <div class="metric"><div class="metric-val pink">~40 min</div><div class="metric-label">Saved per rep/week — timed across 5 reps, not estimated</div></div>
+    </div>
+  </div>
+
+  <!-- BUILD 2: LEAD SCANNER -->
+  <div class="build">
+    <div class="build-header">
+      <div class="build-num">Build 02</div>
+      <div class="build-title">Signal-Based Lead Gen & Router</div>
+      <ul class="influence-bullets" style="margin-bottom:14px;">
+        <li>Google Alerts and manual Crunchbase list checks were eating ~1 hour every week — and I was still missing signals. Funding rounds would close and I'd find out too late.</li>
+        <li>Built a weekly automated scan that fires every Monday: ICP-fit startups that raised in the last 7 days, Salesforce ownership verified via Snowflake, routed to my SDR with context pre-loaded. Zero manual research.</li>
+      </ul>
+      <div class="build-tags">
+        <span class="tag purple">Signal-Based Routing</span>
+        <span class="tag green">Fully Automated</span>
+        <div style="flex-basis:100%;height:0"></div>
+        <span class="tag">Snowflake</span>
+        <span class="tag">Salesforce</span>
+        <span class="tag">Slack</span>
+        <span class="tag">Crunchbase + Web</span>
+      </div>
+    </div>
+    <div class="build-media">
+      <div class="build-video">
+        <div class="build-video-label">Walkthrough — 1 min</div>
+        <div class="loom-wrap">
+          <iframe src="https://www.loom.com/embed/91da0efb5171433bb1f05aa0066e5d85" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="build-screenshot">
+        <div class="build-screenshot-label">Live Dashboard</div>
+        <img src="media/lead-digest.png" alt="DN Lead Signal Digest" class="screenshot-img">
+      </div>
+    </div>
+    <div class="build-metrics">
+      <div class="metric"><div class="metric-val green">$13k</div><div class="metric-label">Pipeline in first 2 weeks</div></div>
+      <div class="metric"><div class="metric-val purple">7</div><div class="metric-label">Meetings booked — 4 with Director+ titles</div></div>
+      <div class="metric"><div class="metric-val gold">14</div><div class="metric-label">Accounts surfaced in first 2 weeks</div></div>
+      <div class="metric"><div class="metric-val pink">1 hr → ~15 min</div><div class="metric-label">Weekly lead research time for SDR</div></div>
+    </div>
+  </div>
+
+  <!-- BUILD 3: QBR -->
+  <div class="build">
+    <div class="build-header">
+      <div class="build-num">Build 03</div>
+      <div class="build-title">QBR Builder + Territory Planner</div>
+      <ul class="influence-bullets" style="margin-bottom:14px;">
+        <li>QBR prep meant exporting 10+ CSVs from Looker, Salesforce, and Gong, spending an hour on quarterly reflection, and context-switching across five tools — a week of work before a single slide was built.</li>
+        <li>Built a guided workflow that pulls live Snowflake data, interviews the rep for reflection content, analyzes CSVs, and outputs a fully structured QBR with territory analysis, account prioritization, and pipeline plan — in under an hour.</li>
+      </ul>
+      <div class="build-tags">
+        <span class="tag purple">QBR Automation</span>
+        <span class="tag green">Proposed for Org-Wide Scaling</span>
+        <span class="tag gold">CRO Recognition</span>
+        <div style="flex-basis:100%;height:0"></div>
+        <span class="tag">Snowflake</span>
+        <span class="tag">Gong</span>
+        <span class="tag">Miro</span>
+      </div>
+    </div>
+    <div class="build-media">
+      <div class="build-video">
+        <div class="build-video-label">Walkthrough — 2 min</div>
+        <div class="loom-wrap">
+          <iframe src="https://www.loom.com/embed/2a6fc826233740cea65ddac430f5ae86" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="build-screenshot">
+        <div class="build-screenshot-label">Miro Output — QBR Frames</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);">
+          <img src="media/QBR Slides 1.png" alt="QBR Slides 1" style="width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;display:block;">
+          <img src="media/QBR Slides 2.png" alt="QBR Slides 2" style="width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;display:block;">
+          <img src="media/QBR NP Slide.jpg" alt="QBR NP Slide" style="width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;display:block;">
+          <img src="media/QBR PG Plan Slide.jpg" alt="QBR PG Plan Slide" style="width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;display:block;">
+        </div>
+      </div>
+    </div>
+    <div class="build-metrics">
+      <div class="metric"><div class="metric-val green">~7 hrs → &lt;1 hr</div><div class="metric-label">QBR prep time</div></div>
+      <div class="metric"><div class="metric-val purple">85%</div><div class="metric-label">Reduction in prep time</div></div>
+      <div class="metric"><div class="metric-val pink">41–58 min</div><div class="metric-label">Total QBR + territory prep across 3 other reps tested</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SYSTEMS THINKING -->
+<div class="section" id="systems">
+  <div class="section-label">Systems Thinking</div>
+  <h2>Beyond just building.</h2>
+  <p class="section-sub">I don't just ship workflows. I diagnose root causes, flag data model gaps, and propose scalable processes — the way an engineer or ops analyst would.</p>
+  <div class="sys-list">
+    <div class="sys-item highlighted">
+      <div class="annotation">
+        <div class="annotation-label">Why this matters</div>
+        <div class="annotation-text">I identified a gap no one else had caught, built a solution, and it was scaled across the org. That's the full loop — diagnosis, build, adoption.</div>
+      </div>
+      <span class="highlight-star">Highlight</span>
+      <div class="sys-arrow">→</div>
+      <div>
+        <div class="sys-title">ARR blind spot in True-Up Scanner — systemic risk flagged</div>
+        <div class="sys-desc">Accounts without auto-created Salesforce true-up opportunities were invisible to every rep in the org. Caught the gap, flagged it as a systemic ARR risk, and proposed the fix. Not a bug report — an audit.</div>
+      </div>
+    </div>
+    <div class="sys-item highlighted">
+      <div class="annotation">
+        <div class="annotation-label">Why this matters</div>
+        <div class="annotation-text">This is how I've influenced cross-functional teams and approached scaling solutions — not just building and handing off, but staying in the loop to ensure adoption works in practice.</div>
+      </div>
+      <span class="highlight-star">Highlight</span>
+      <div class="sys-arrow">→</div>
+      <div>
+        <div class="sys-title">Consultant handoff model — proposed and adopted by GTM Strategy</div>
+        <div class="sys-desc">Proposed that builders stay as field validators when their work scales org-wide — not just hand off. GTM Strategy Program Manager confirmed and adopted it as standard practice.</div>
+      </div>
+    </div>
+    <div class="sys-item">
+      <div class="sys-arrow">→</div>
+      <div>
+        <div class="sys-title">AI skill conflict — root cause identified and resolved</div>
+        <div class="sys-desc">A custom skill I'd built pre-launch was intercepting natural language prompts — routing to the wrong tool and pulling zero live data. Identified the conflict, documented the root cause, and fed it back to the product team before GA.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CROSS-FUNCTIONAL INFLUENCE -->
+<div class="section" id="influence">
+  <div class="section-label">Cross-Functional Influence</div>
+  <h2>When leadership starts coming to you.</h2>
+  <p class="section-sub">Not just building — being sought out. These are the moments where the work crossed team lines and changed decisions at the program level.</p>
+
+  <div class="workshop-callout highlighted">
+    <div class="annotation">
+      <div class="annotation-label">Why this matters</div>
+      <div class="annotation-text">When a company needs someone to teach its entire sales org how to use a new AI system — across every role, segment, and region — that's a GTM Engineer's job. They picked me to do it.</div>
+    </div>
+    <span class="highlight-star">Highlight</span>
+    <div class="workshop-top">
+      <div class="workshop-badge">★ Highlight</div>
+      <div class="workshop-scope">
+        <span class="scope-chip">xDR + AE</span>
+        <span class="scope-chip">SMB · Mid-Market · Enterprise</span>
+        <span class="scope-chip">Americas · Europe</span>
+        <span class="scope-chip">50 attendees</span>
+      </div>
+    </div>
+    <div class="workshop-title">Selected by GTM Strategy leadership to train 50 reps on the GTM Engine</div>
+    <ul class="influence-bullets" style="margin-top: 10px;">
+      <li>Delivered as a live presentation, hands-on demo, and walkthrough. Not nominated. Asked.</li>
+      <li>Reps across SMB, Mid-Market, and Enterprise adopted the GTM Engine following the workshop.</li>
+    </ul>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px;">
+      <img src="media/GTM Engine Workshop Title.png" alt="GTM Engine Workshop Title Slide" style="width:100%; border-radius: 6px; border: 1px solid var(--border); display: block;">
+      <img src="media/Workshop How to Use Natural Language.jpg" alt="Workshop — How to Use Natural Language" style="width:100%; border-radius: 6px; border: 1px solid var(--border); display: block;">
+      <img src="media/Workshop Claude Modes.jpg" alt="Workshop — Claude Modes" style="width:100%; border-radius: 6px; border: 1px solid var(--border); display: block;">
+      <img src="media/Workshop Claude Connectors.jpg" alt="Workshop — Claude Connectors" style="width:100%; border-radius: 6px; border: 1px solid var(--border); display: block;">
+      <img src="media/GTM Engine Workshop.png" alt="GTM Engine Workshop" style="width:100%; grid-column: span 2; border-radius: 6px; border: 1px solid var(--border); display: block;">
+    </div>
+  </div>
+
+  <div class="influence-grid">
+
+    <div class="influence-card highlighted">
+      <div class="annotation">
+        <div class="annotation-label">Why this matters</div>
+        <div class="annotation-text">This is the CEO's office validating the work. Being sought out for a company-wide demo and having two builds selected as the org-wide standard means the output wasn't just useful — it was production-grade and scalable.</div>
+      </div>
+      <span class="highlight-star">Highlight</span>
+      <div class="influence-card-title">Demonstrated Builds to entire company — "Talk Claude to Me" Office Hours</div>
+      <div class="influence-attribution">
+        <div class="influence-avatar">IU</div>
+        <div>
+          <span class="influence-attr-name">Iman Uda</span>
+          <span class="influence-attr-role">Strategy & Operations Lead — Chief of Staff's office, reporting to the CEO</span>
+        </div>
+      </div>
+      <div class="influence-impact">Sought out as the company's go-to power user. Two builds are now the flagship.</div>
+      <ul class="influence-bullets">
+        <li>Personally recommended — not submitted — for the company-wide "Talk Claude to Me" demo</li>
+        <li>QBR Builder + True-Up Engine are the flagship use cases for the full GTM plugin launch to the entire company</li>
+      </ul>
+    </div>
+
+    <div class="influence-card">
+      <div class="influence-card-title">Proposed the model for scaling GTM Engine adoption — adopted org-wide</div>
+      <div class="influence-attribution">
+        <div class="influence-avatar">CF</div>
+        <div>
+          <span class="influence-attr-name">Caitlin Fischetti & Kathryn Macy</span>
+          <span class="influence-attr-role">Caitlin — Head of GTM Strategy & Transformation, exec sponsor · Kathryn — Senior GTM Strategy Program Manager</span>
+        </div>
+      </div>
+      <div class="influence-impact">Caitlin came to Tyler. Tyler proposed the model. Kathryn made it standard.</div>
+      <ul class="influence-bullets">
+        <li>Caitlin (exec sponsor) approached Tyler to solve a momentum problem: how do you keep strong builders engaged once GTM Strategy takes ownership of their work?</li>
+        <li>Proposed the consultant handoff model — builders stay as field validators while the team scales, freeing them to build the next thing without losing context.</li>
+        <li>Kathryn operationalized it, escalating to Caitlin and adopting it as the org-wide standard for the GTM Engine rollout.</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- RECOGNITION -->
+<div class="section" id="recognition">
+  <div class="section-label">Recognition</div>
+  <h2>Heard at the top of the org.</h2>
+  <p class="section-sub">Unsolicited. From people who had nothing to gain from saying it.</p>
+
+  <div class="rec-grid">
+
+    <div class="change-agent-callout highlighted" style="border-color: rgba(124,92,252,0.5); box-shadow: 0 0 0 1px rgba(124,92,252,0.12), 0 4px 24px rgba(124,92,252,0.08);">
+      <div class="annotation" style="border-color: var(--accent); background: #13102a;">
+        <div class="annotation-label" style="color: var(--accent);">Why this matters</div>
+        <div class="annotation-text">Hand-picked by the Head of GTM Strategy & Transformation for early access to Miro's GTM Engine — this program is the foundation that made everything else on this page possible.</div>
+      </div>
+      <span class="highlight-star" style="color: var(--accent);">Highlight</span>
+      <div class="ca-badge">
+        <div class="ca-badge-top">Selected</div>
+        <div class="ca-badge-main">Change<br>Agent</div>
+      </div>
+      <div class="ca-body">
+        <div class="ca-title">Miro Change Agent Program — Hand-picked by Head of GTM Strategy & Transformation</div>
+        <div class="ca-desc">Selected for pre-GA access to Miro's Snowflake-powered GTM Engine — identified as one of the strongest builders in the pilot. Submitted 10+ structured feedback items across live deal testing, contributing directly to product iteration before public launch.</div>
+      </div>
+    </div>
+
+    <div class="rec-card gold-rec">
+      <div class="rec-from">Head of Sales Operations, COE — Miro</div>
+      <div class="rec-quote">"If I had the headcount, I would hire you now."</div>
+      <div class="rec-context">Unsolicited recognition from a senior Sales Operations leader after seeing the workflows in action. A direct signal of the caliber of work being produced.</div>
+    </div>
+
+    <div class="rec-card">
+      <div class="rec-from">Norman Gennaro, Chief Revenue Officer — Direct Slack Message</div>
+      <div class="rec-quote">"Great work on the QBR skill."</div>
+      <div class="rec-context">Followed by a strategic discussion on how to use the workflow to drive to 300% of quota. The CRO wasn't just complimenting the build — he was treating it as a planning input.</div>
+    </div>
+
+    <div class="slack-evidence">
+      <div class="slack-label">Lotte Van Uum, Chief of Staff to the CEO — Public LinkedIn Post · 33+ reactions</div>
+      <img src="media/Chief of Staff LI.png" alt="Chief of Staff LinkedIn Post" style="width:100%;display:block;border-radius:0 0 8px 8px;">
+    </div>
+
+    <!-- Slack screenshots: QBR reactions -->
+    <div class="rec-pair">
+      <div class="slack-evidence">
+        <div class="slack-label">ai-internal-wins · QBR announcement</div>
+        <img src="media/QBR Build Matt.png" alt="Matt Young Slack reaction" style="width:100%;display:block;border-radius:0 0 8px 8px;">
+      </div>
+      <div class="slack-evidence">
+        <div class="slack-label">ai-internal-wins · More reactions</div>
+        <img src="media/QBR Build Norm.png" alt="Norman Gannaro Slack reaction" style="width:100%;display:block;border-radius:0 0 8px 8px;">
+      </div>
+    </div>
+
+    <div class="rec-pair">
+      <div class="slack-evidence">
+        <div class="slack-label">gtm-claude-cowork · Caitlin Fischetti, Head of GTM Strategy</div>
+        <img src="media/QBR Build Cailtin.png" alt="Caitlin Fischetti Slack thread" style="width:100%;display:block;border-radius:0 0 8px 8px;">
+      </div>
+      <div class="slack-evidence">
+        <div class="slack-label">gtm-claude-cowork · Territory Planning thread</div>
+        <img src="media/Territory & Account Planning Caitlin.png" alt="Territory Planning Caitlin thread" style="width:100%;display:block;border-radius:0 0 8px 8px;">
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- BACKGROUND -->
+<div class="section" id="about">
+  <div class="section-label">Background</div>
+  <h2>What I bring that's hard to hire for.</h2>
+  <p class="section-sub">Most GTM Engineers can build the tool. Few have lived the problem they're solving.</p>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-label">Zero-to-One Builder</div>
+      <div class="about-value">Hired as founding AE for a segment that didn't exist. Built the playbook, defined the ICP, identified process gaps, and created business cases for resources — with no inherited pipeline, no marketing support, and <strong>73% less inbound than every other segment.</strong></div>
+    </div>
+    <div class="about-card">
+      <div class="about-label">SDR Workflow Auditing</div>
+      <div class="about-value">Audited our full prospecting-to-personalization-to-sequence enrollment process using Pocus AI and Outreach — before GTM Engineering was a title. Identified bottlenecks, proposed a new workflow. Result: <strong>multiple booked meetings from a process change</strong> — not a headcount change.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-label">Field ↔ Systems Translation</div>
+      <div class="about-value">Guided BizTech on the Salesforce field logic and routing framework for startup credit leads. When a CSM hit a data wall in the GTM Engine, <strong>diagnosed it as a Snowflake access gap</strong> and routed it as a formal data request to GTM Strategy.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-label">BDR + AE — Carried the Bag</div>
+      <div class="about-value">Set meetings and closed deals across SMB, Mid-Market, and Enterprise. I know where sequences break, where handoffs fail, and where reps lose time. <strong>I build for the person in the seat — because I've been in that seat.</strong></div>
+    </div>
+  </div>
+  <div style="margin-top: 16px;">
+    <div class="about-card">
+      <div class="about-label">Stack</div>
+      <div class="stack-row">
+        <span class="stack-pill">Claude AI</span>
+        <span class="stack-pill">Cowork</span>
+        <span class="stack-pill">Snowflake</span>
+        <span class="stack-pill">Salesforce</span>
+        <span class="stack-pill">Gong</span>
+        <span class="stack-pill">Slack Workflows</span>
+        <span class="stack-pill">Miro MCP</span>
+        <span class="stack-pill">Crunchbase</span>
+        <span class="stack-pill">Pocus AI</span>
+        <span class="stack-pill">Outreach</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Let's talk.</h2>
+  <p>I'm open to GTM Engineering roles where I can build from zero, own the tooling layer, and have direct impact on pipeline and rep efficiency. If that's the problem you're solving, I want to hear about it.</p>
+  <div class="cta-buttons">
+    <a href="mailto:tyler@miro.com" class="btn-primary">✉ tyler@miro.com</a>
+    <a href="https://www.linkedin.com/in/tyler-spence-465a0b122/" target="_blank" class="btn-secondary">↗ LinkedIn</a>
+  </div>
+</div>
+
+<footer>Tyler Spence · GTM Engineering Portfolio · 2026</footer>
+
+<div class="lightbox-overlay" id="lightbox">
+  <span class="lightbox-close" id="lightbox-close">✕</span>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+</div>
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  const overlay = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbClose = document.getElementById('lightbox-close');
+  document.querySelectorAll('img:not(#lightbox-img)').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      overlay.classList.add('active');
+    });
+  });
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay || e.target === lbClose) overlay.classList.remove('active');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') overlay.classList.remove('active');
+  });
+</script>
+
+</body>
+</html>
